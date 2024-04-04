@@ -11,6 +11,9 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["label","color"];
+
+
     // relazione tra tabella Type e Project
     public function projects(){
         return $this->hasMany(Project::class);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,10 @@ Route::middleware('auth')
 
     // aggiungo rotte protette del project controller
     Route::resource('projects', ProjectController::class);
+
+    // rotte protette del type controller
+    Route::resource('types', TypeController::class);
+    
   });
 
 require __DIR__ . '/auth.php';
