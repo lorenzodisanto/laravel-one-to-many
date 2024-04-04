@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\StoreProjectRequest;
 use App\Http\Requests\Auth\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 // importo facades string
@@ -23,7 +24,7 @@ class ProjectController extends Controller
     public function index()
     {
         // recupero la lista dei progetti dal database
-        $projects = Project::paginate(10);
+        $projects = Project::orderBy('id',"DESC")->paginate(10);
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -33,8 +34,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        // prendo i types da passare alla vista
+        $types = Type::all();
         // ritorno il form aggiungi nuovo progetto
-        return view('admin.projects.create');
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -77,8 +80,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        // prendo i types da passare alla vista
+        $types = Type::all();
         //ritorno la vista del form di modifica
-        return view('admin.projects.edit', compact('project'));
+        return view('admin.projects.edit', compact('project','types'));
 
     }
 

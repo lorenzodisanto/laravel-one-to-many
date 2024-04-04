@@ -26,7 +26,9 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title'=> 'required|string|max:150',
             'link'=> 'required|url',
-            'description'=> 'required|string'
+            'description'=> 'required|string',
+            'type_id'=>'required|exists:types,id'
+
         ];
     }
 
@@ -42,6 +44,10 @@ class UpdateProjectRequest extends FormRequest
 
             'description.required'=> 'La descrizione è obbligatoria',
             'description.string'=> 'La descrizione deve essere una stringa',
+
+            'type_id.exists'=> 'Il Type non esiste',
+            'type_id.required'=> 'Campo obbligatorio',
+
         ];
     }
 }

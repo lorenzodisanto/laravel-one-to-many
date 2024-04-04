@@ -27,7 +27,7 @@
       <form action="{{ route('admin.projects.store') }}" method="POST" class="row">
         @csrf
 
-        <div class="col-6">
+        <div class="col-9">
             <label for="title" class="form-label pt-3">Title</label>
             <input type="text" 
               class="form-control @error('title') is-invalid
@@ -43,7 +43,23 @@
             @enderror
         </div>
 
-        <div class="col-6">
+        <div class="col-3">
+          <label for="type_id" class="form-label pt-3">Type</label>
+            <select name="type_id" id="type-id" class="form-select @error('type_id') is-invalid @enderror">
+              <option value="">Select type --</option>
+              @foreach ($types as $type)
+                <option value="{{ $type->id }}" @if (old('type_id') == $type->id) selected @endif>{{ $type->label }}
+                </option>
+              @endforeach
+            </select>
+            @error('type_id')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+        </div>
+
+        <div class="col-12">
             <label for="link" class="form-label pt-3">Link</label>
             <input type="text" 
               class="form-control @error('link') is-invalid

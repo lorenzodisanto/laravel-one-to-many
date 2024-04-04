@@ -12,7 +12,7 @@ class Project extends Model
     use HasFactory;
 
     // aggiungo fillable per ricevere i dati dal form
-    protected $fillable = ["title", "link", "description"];
+    protected $fillable = ["type_id","title", "link", "description"];
 
     // relazione tra tabella Project e Type
     public function type(){
