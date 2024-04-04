@@ -17,6 +17,7 @@
                 <div class="card-body">
                     <h2>{{ $project->id }} - {{ $project->title }}</h2>
                     <code>{{ $project->slug }}</code>
+                    <p class="fs-5"><b>Type:</b> {{ $project->type->label }}</p>
                     <p class="fs-5">{{ $project->description }}</p>
                     <a href="{{ $project->link }}">link</a>
                 </div>
