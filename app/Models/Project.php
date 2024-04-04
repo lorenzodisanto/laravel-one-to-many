@@ -11,4 +11,9 @@ class Project extends Model
 
     // aggiungo fillable per ricevere i dati dal form
     protected $fillable = ["title", "link", "description"];
+
+    // relazione tra tabella Project e Type
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }
