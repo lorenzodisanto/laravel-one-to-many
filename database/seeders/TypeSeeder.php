@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+// importo faker
+use Faker\Generator as Faker;
 
 class TypeSeeder extends Seeder
 {
@@ -12,8 +16,16 @@ class TypeSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        //array di labels predefinite
+        $labels = ['Frontend', 'Backend', 'Fullstack'];
+
+        foreach($labels as $label) {
+            $type = new Type();
+            $type->label = $label;
+            $type->color = $faker->hexColor();
+            $type->save();
+        }
     }
 }

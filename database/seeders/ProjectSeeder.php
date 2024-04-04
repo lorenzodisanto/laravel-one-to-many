@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 // importo faker
@@ -18,10 +19,16 @@ class ProjectSeeder extends Seeder
      * @return void
      */
     public function run(Faker $faker)
-    {
-        for ($i=0; $i < 100; $i++) { 
-            $project = new Project;
+    {   
+        // aggiungo l'id della tipologia associata
+        $types = Type::all()->pluck('id');
 
+        for ($i=0; $i < 100; $i++) { 
+            // assegnazione randomica del type_id dai types
+            $type_id = $faker->randomElement($types);
+
+            $project = new Project;
+            $project->type_id = $type_id;
             $project->title = $faker->catchPhrase();
             $project->slug = Str::slug($project->title);
             $project->description = $faker->paragraph(2, true);
