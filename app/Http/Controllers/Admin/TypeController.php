@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Auth\StoreTypeRequest;
+use App\Http\Requests\Auth\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -36,8 +38,11 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
+        // validazione richiesta
+        $request->validated();
+
         //salvataggio type inserito nel form
         $data = $request->all();
         $type = new Type();
@@ -77,8 +82,11 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
+        // validazione richiesta
+        $request->validated();
+
         //salvataggio type inserito nel form
         $data = $request->all();
         $type->fill($data);
