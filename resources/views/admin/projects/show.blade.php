@@ -13,17 +13,19 @@
             {{-- pulsante modifica progetto --}}
             <a href="{{ route('admin.projects.edit', $project)}}" class="btn btn-warning"> Edit Project</a>
 
+            <h2 class="mt-3">Project info</h2>
+
             <div class="card my-4">
+                <div class="card-header">
+                    <h3>{{ $project->title }} #{{ $project->id }}</h3>
+                </div>
                 <div class="card-body">
-                    <h2>{{ $project->id }} - {{ $project->title }}</h2>
-                    <code>{{ $project->slug }}</code>
-                    <p class="fs-5"><b>Type:</b> <span class="badge" style="background-color: {{ $project->type->color }}">{{ $project->type->label }}</span></p>
+                    <code class="fs-4">{{ $project->slug }}</code>
+                    <p class="my-2"><span class="badge fs-5" style="background-color: {{ $project->type->color }}">{{ $project->type->label }}</span></p>
                     <p class="fs-5">{{ $project->description }}</p>
                     <a href="{{ $project->link }}">link</a>
-                </div>
-                
-            </div>
-            
+                </div>              
+            </div>          
         </div>
     </section>
 @endsection
